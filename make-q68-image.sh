@@ -1,20 +1,20 @@
 #! /bin/bash
 
 if [[ $# -ne 3 ]]; then
-	echo "Usage: make-q68-image.sh <SIZE> <IMAGE> <DIRECTORY>"
-	exit 1
+  echo "Usage: make-q68-image.sh <SIZE> <IMAGE> <DIRECTORY>"
+  exit 1
 fi
 
 SIZE="$1"
 IMAGE="$2"
 DIR="$3"
 
-truncate -s 4G "$IMAGE"
+truncate -s "$SIZE" "$IMAGE"
 
 echo "Collecting files"
 (
-	cd "$DIR" || exit
-	tar cvf "/tmp/$IMAGE.tar" .
+  cd "$DIR" || exit
+  tar cvf "/tmp/$IMAGE.tar" .
 )
 
 echo "Creating images"
